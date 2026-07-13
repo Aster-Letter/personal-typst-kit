@@ -2,6 +2,7 @@ name: compile
 
 on:
   push:
+    branches: ['**']
   pull_request:
 
 jobs:

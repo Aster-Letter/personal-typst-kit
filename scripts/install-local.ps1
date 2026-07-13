@@ -18,3 +18,4 @@ Copy-Item -LiteralPath (Join-Path $PackageRoot 'LICENSE') -Destination $Destinat
 Copy-Item -LiteralPath (Join-Path $PackageRoot 'src') -Destination $Destination -Recurse
 
 Write-Output "Installed @local/personal-typst-kit:0.1.0 to $Destination"
+$global:LASTEXITCODE = 0

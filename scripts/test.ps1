@@ -35,3 +35,4 @@ foreach ($Fixture in $Invalid) {
 }
 
 Write-Output 'All personal-typst-kit tests passed.'
+$global:LASTEXITCODE = 0

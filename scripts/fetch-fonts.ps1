@@ -16,3 +16,4 @@ foreach ($Entry in $Fonts.GetEnumerator()) {
   }
 }
 Write-Output "Fetched OFL fonts to $([System.IO.Path]::GetFullPath($Destination))"
+$global:LASTEXITCODE = 0
