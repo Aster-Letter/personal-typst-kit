@@ -1,0 +1,32 @@
+name: compile
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: typst-community/setup-typst@v4
+        with:
+          typst-version: 0.15.0
+      - name: Fetch OFL fonts and test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          ./scripts/fetch-fonts.ps1 -Destination ./build/fonts
+          $env:TYPST_FONT_PATHS = (Resolve-Path ./build/fonts).Path
+          ./scripts/test.ps1
+      - name: Fetch OFL fonts and test (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          bash scripts/fetch-fonts.sh ./build/fonts
+          export TYPST_FONT_PATHS="$PWD/build/fonts"
+          bash scripts/test.sh

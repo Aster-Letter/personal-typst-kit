@@ -1,0 +1,18 @@
+build/
+output/
+tmp/
+*.pdf
+*.png
+*.svg
+!examples/assets/*.svg
+
+# Local agent/session material is not part of the stable project context.
+docs-agent/logs/
+docs-agent/sessions/
+docs-agent/references/private/
+
+# Editor and OS noise.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

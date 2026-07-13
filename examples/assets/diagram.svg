@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" role="img" aria-label="Three connected document layers">
+  <rect width="800" height="440" rx="28" fill="#f4f7f9"/>
+  <path d="M170 220H630" stroke="#b8c4cc" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="170" cy="220" r="88" fill="#307e86"/>
+  <circle cx="400" cy="220" r="88" fill="#2f6fa8"/>
+  <circle cx="630" cy="220" r="88" fill="#a56532"/>
+  <circle cx="170" cy="220" r="38" fill="#edf7f7"/>
+  <circle cx="400" cy="220" r="38" fill="#edf4fb"/>
+  <circle cx="630" cy="220" r="38" fill="#fcf3e9"/>
+</svg>
