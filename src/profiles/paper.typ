@@ -39,22 +39,22 @@
       )
       #if opts.cover [
         #paper-title(meta, theme)
-        #if meta.abstract != none [#v(1.8em)#abstract-block(meta, theme)]
+        #if meta.abstract != none [#v(1.25em)#abstract-block(meta, theme)]
         #pagebreak()
       ]
       #set page(header: main-header)
       #if opts.toc [
         #if opts.page-numbering-start == "toc" [
           #counter(page).update(1)
-          #set page(footer: page-footer(theme))
         ]
+        #set page(footer: if opts.page-numbering-start == "body" { none } else { page-footer(theme) })
         #render-outline(theme, depth: opts.toc-depth)
         #pagebreak()
       ]
-      #if opts.page-numbering-start == "body" [
+      #if opts.page-numbering-start == "body" or (opts.page-numbering-start == "toc" and not opts.toc) [
         #counter(page).update(1)
-        #set page(footer: page-footer(theme))
       ]
+      #set page(footer: page-footer(theme))
       #body
       #render-bibliography(opts.bibliography)
     ]

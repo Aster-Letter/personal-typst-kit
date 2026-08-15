@@ -13,7 +13,7 @@
 }
 
 #let paper-title(meta, theme) = align(center)[
-  #v(2.2em)
+  #v(1.7em)
   #text(font: theme.fonts.heading, size: theme.type-scale.title, weight: "bold")[#meta.title]
   #if meta.subtitle != none [
     #v(0.7em)
@@ -81,9 +81,9 @@
 
 #let abstract-block(meta, theme) = if meta.abstract != none {
   block(
-    inset: 1em,
-    stroke: theme.spacing.line-width + theme.colors.line,
-    radius: theme.spacing.radius,
+    inset: 0.85em,
+    stroke: 0.45pt + theme.colors.line,
+    radius: calc.min(theme.spacing.radius, 2pt),
   )[
     #set par(first-line-indent: 0em)
     #strong[摘要] \

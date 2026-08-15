@@ -3,7 +3,7 @@ $Root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $Review = Join-Path $Root 'tmp\review'
 New-Item -ItemType Directory -Path $Review -Force | Out-Null
 
-$Examples = @('paper', 'book', 'manual', 'handout')
+$Examples = @('paper', 'working-paper', 'book', 'manual', 'handout')
 foreach ($Name in $Examples) {
   $Input = Join-Path $Root ("examples/$Name/main.typ")
   $Output = Join-Path $Review ($Name + '-{p}.png')

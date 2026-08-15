@@ -1,12 +1,14 @@
 #import "context.typ": activate-context, special-heading-supplement
 #import "config.typ": normalize-bibliography
 
+#let color-token(theme, key, fallback) = theme.colors.at(key, default: fallback)
+
 #let render-heading(it, theme, mode: "paper", chapter-label: none) = {
   let special = it.supplement == special-heading-supplement
   if special {
     block(above: 1.05em, below: 0.7em)[
       #set par(first-line-indent: 0em)
-      #set text(font: theme.fonts.heading, fill: theme.colors.accent)
+      #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #text(size: theme.type-scale.h2, weight: "semibold")[#it.body]
       #v(0.28em)
       #line(length: 3.2em, stroke: theme.spacing.line-width + theme.colors.accent)
@@ -15,7 +17,7 @@
     if target() == "paged" { pagebreak(weak: true) }
     block(above: 0em, below: 1.2em)[
       #set par(first-line-indent: 0em)
-      #set text(font: theme.fonts.heading, fill: theme.colors.accent)
+      #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #if chapter-label != none and it.numbering != none [
         #text(size: theme.type-scale.small, fill: theme.colors.muted)[#chapter-label]
         #v(0.4em)
@@ -36,13 +38,21 @@
     let below = if it.level == 1 { 0.9em } else { 0.5em }
     block(above: above, below: below)[
       #set par(first-line-indent: 0em)
-      #set text(font: theme.fonts.heading, fill: theme.colors.accent)
+      #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #text(size: size, weight: if it.level == 1 { "bold" } else { "semibold" })[#it]
     ]
   }
 }
 
-#let base-style(body, theme: none, numbering: none, draft-mode: "show", heading-mode: "paper", chapter-label: none) = {
+#let base-style(
+  body,
+  theme: none,
+  numbering: none,
+  draft-mode: "show",
+  heading-mode: "paper",
+  chapter-label: none,
+  heading-hook: none,
+) = {
   assert(theme != none, message: "base-style requires theme")
   assert(numbering != none, message: "base-style requires numbering")
   activate-context(theme, draft-mode: draft-mode)
@@ -61,10 +71,14 @@
   )
   set heading(numbering: numbering)
   set quote(block: true)
+  show link: set text(fill: color-token(theme, "link", theme.colors.accent))
   show link: underline
   show raw: set text(font: theme.fonts.mono, size: theme.type-scale.code)
   show figure: set block(above: theme.spacing.block-gap, below: theme.spacing.block-gap)
-  show heading: it => render-heading(it, theme, mode: heading-mode, chapter-label: chapter-label)
+  show heading: it => {
+    if heading-hook != none { heading-hook(it) }
+    render-heading(it, theme, mode: heading-mode, chapter-label: chapter-label)
+  }
   body
 }
 
@@ -75,7 +89,7 @@
 #let render-outline(theme, title: [目录], depth: 3) = {
   block(above: 1em, below: 0.75em)[
     #set par(first-line-indent: 0em)
-    #set text(font: theme.fonts.heading, fill: theme.colors.accent)
+    #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
     #text(size: 18pt, weight: "bold")[#title]
   ]
   outline(title: none, depth: depth)

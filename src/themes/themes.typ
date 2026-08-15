@@ -8,7 +8,7 @@
     "Noto Sans SC",
   ),
   mono: (
-    "JetBrains Mono",
+    "DejaVu Sans Mono",
   ),
 )
 
@@ -49,6 +49,8 @@
   colors: semantic-colors + (
     accent: accent,
     accent-soft: accent-soft,
+    heading: accent,
+    link: accent,
   ),
   fonts: font-defaults,
   type-scale: type-scale-defaults,
@@ -60,6 +62,34 @@
   ink: make-theme("ink", rgb("#3f4858"), rgb("#f0f2f5")),
   warm: make-theme("warm", rgb("#a56532"), rgb("#fcf3e9")),
   blue: make-theme("blue", rgb("#2f6fa8"), rgb("#edf4fb")),
+  academic: make-theme("academic", rgb("#7a1f2b"), rgb("#f8f3f4")) + (
+    colors: semantic-colors + (
+      accent: rgb("#7a1f2b"),
+      accent-soft: rgb("#f8f3f4"),
+      heading: rgb("#171717"),
+      link: rgb("#7a1f2b"),
+    ),
+    fonts: (
+      body: ("Noto Serif SC",),
+      heading: ("Noto Serif SC",),
+      mono: ("DejaVu Sans Mono",),
+    ),
+    type-scale: type-scale-defaults + (
+      body: 11pt,
+      title: 20pt,
+      subtitle: 12pt,
+      h1: 14pt,
+      h2: 12pt,
+      h3: 11pt,
+    ),
+    spacing: spacing-defaults + (
+      leading: 0.68em,
+      paragraph-gap: 0.3em,
+      block-gap: 0.85em,
+      radius: 1.5pt,
+      line-width: 0.55pt,
+    ),
+  ),
 )
 
 #let theme-with(

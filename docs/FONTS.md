@@ -2,14 +2,16 @@
 
 本仓库不提交字体二进制。默认字体栈优先使用下列可公开核验的字体：
 
-- 中文正文：Source Han Serif SC（思源宋体，SIL Open Font License 1.1）。
-- 中文标题：Source Han Sans SC（思源黑体，SIL Open Font License 1.1）。
-- 拉丁代码：JetBrains Mono（SIL Open Font License 1.1）。
+- 默认中文正文：Noto Serif SC；可通过主题覆盖为 Source Han Serif SC（均为 SIL Open Font License 1.1）。
+- 默认中文标题：Noto Sans SC；可通过主题覆盖为 Source Han Sans SC（均为 SIL Open Font License 1.1）。
+- 拉丁代码：DejaVu Sans Mono（自由字体许可证）；需要自定义时可通过主题覆盖为 JetBrains Mono。
 
 官方来源：
 
+- https://github.com/googlefonts/noto-cjk
 - https://github.com/adobe-fonts/source-han-serif
 - https://github.com/adobe-fonts/source-han-sans
+- https://dejavu-fonts.github.io/
 - https://github.com/JetBrains/JetBrainsMono
 
 系统 fallback：

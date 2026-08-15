@@ -33,6 +33,7 @@
   title: none,
   subtitle: none,
   author: none,
+  authors: none,
   date: none,
   organization: none,
   version: none,
@@ -41,6 +42,8 @@
   keywords: none,
   course: none,
   audience: none,
+  short-title: none,
+  english: none,
 )
 
 #let normalize-meta(meta) = {

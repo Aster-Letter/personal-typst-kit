@@ -1,4 +1,4 @@
-#import "../../lib.typ": handout, themes, learning-objectives, definition-box, worked-example, exercise, lesson-summary, callout
+#import "../../lib.typ": handout, themes, learning-objectives, definition-box, worked-example, exercise, lesson-summary, response-area, callout
 
 #show: handout.with(
   meta: (
@@ -28,6 +28,8 @@
 == 自检
 
 #exercise(points: 5)[为“课程作业封面”判断归属层次，并说明它为什么不应进入通用核心。]
+
+#response-area(rows: 3, label: [作答区], ruled: true)
 
 #callout(kind: "tip")[优先从真实复用场景抽象，不为尚未出现的需求提前制造接口。]
 

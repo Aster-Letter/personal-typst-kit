@@ -2,17 +2,14 @@
 
 #let cjk-paper-numbering(..numbers) = {
   let values = numbers.pos()
-  let parts = ()
-  for (index, value) in values.enumerate() {
-    if index == 0 {
-      parts.push([#numbering("一", value)、])
-    } else if index == 1 {
-      parts.push([（#numbering("一", value)）])
-    } else {
-      parts.push([#numbering("1", value).])
-    }
+  let value = values.last()
+  if values.len() == 1 {
+    [#numbering("一", value)、]
+  } else if values.len() == 2 {
+    [（#numbering("一", value)）]
+  } else {
+    [#numbering("1", value).]
   }
-  parts.join("")
 }
 
 #let chapter-numbering(..numbers) = {

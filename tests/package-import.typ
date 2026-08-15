@@ -1,4 +1,8 @@
-#import "@local/personal-typst-kit:0.1.0": handout, themes, callout
-#show: handout.with(meta: (title: [本地包导入测试]), theme: themes.teal, options: (draft-mode: "hide"))
+#import "@local/personal-typst-kit:0.2.0": working-paper, themes, theorem
+#show: working-paper.with(
+  meta: (title: [本地包导入测试], authors: ((name: [示例作者]),)),
+  theme: themes.academic,
+  options: (front-matter: "inline"),
+)
 = Import
-#callout[本文件验证版本化 `@local` 导入。]
+#theorem[本文件验证 0.2.0 的版本化导入与正式论文公共 API。]

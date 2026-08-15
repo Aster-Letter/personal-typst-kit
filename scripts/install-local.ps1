@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $PackageRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $DestinationRoot = [System.IO.Path]::GetFullPath($DestinationRoot)
-$Destination = Join-Path $DestinationRoot 'local\personal-typst-kit\0.1.0'
+$Destination = Join-Path $DestinationRoot 'local\personal-typst-kit\0.2.0'
 
 if (Test-Path -LiteralPath $Destination) {
   Remove-Item -LiteralPath $Destination -Recurse -Force
@@ -17,5 +17,5 @@ Copy-Item -LiteralPath (Join-Path $PackageRoot 'typst.toml') -Destination $Desti
 Copy-Item -LiteralPath (Join-Path $PackageRoot 'LICENSE') -Destination $Destination
 Copy-Item -LiteralPath (Join-Path $PackageRoot 'src') -Destination $Destination -Recurse
 
-Write-Output "Installed @local/personal-typst-kit:0.1.0 to $Destination"
+Write-Output "Installed @local/personal-typst-kit:0.2.0 to $Destination"
 $global:LASTEXITCODE = 0

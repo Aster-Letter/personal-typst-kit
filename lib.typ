@@ -1,6 +1,7 @@
 // Stable public facade. Internal src/ paths are not public API.
 
 #import "src/profiles/paper.typ" as paper-module
+#import "src/profiles/working-paper.typ" as working-paper-module
 #import "src/profiles/book.typ" as book-module
 #import "src/profiles/manual.typ" as manual-module
 #import "src/profiles/handout.typ" as handout-module
@@ -12,8 +13,10 @@
 #import "src/extensions/manual.typ" as manual-extension
 #import "src/extensions/handout.typ" as handout-extension
 #import "src/extensions/draft.typ" as draft-extension
+#import "src/extensions/working-paper.typ" as working-paper-extension
 
 #let paper = paper-module.paper
+#let working-paper = working-paper-module.working-paper
 #let book = book-module.book
 #let manual = manual-module.manual
 #let handout = handout-module.handout
@@ -39,5 +42,15 @@
 #let worked-example = handout-extension.worked-example
 #let exercise = handout-extension.exercise
 #let lesson-summary = handout-extension.lesson-summary
+#let response-area = handout-extension.response-area
 #let draft-note = draft-extension.draft-note
 #let todo = draft-extension.todo
+
+#let theorem = working-paper-extension.theorem
+#let lemma = working-paper-extension.lemma
+#let proposition = working-paper-extension.proposition
+#let definition = working-paper-extension.definition
+#let proof = working-paper-extension.proof
+#let remark = working-paper-extension.remark
+#let acknowledgements = working-paper-extension.acknowledgements
+#let appendices = working-paper-extension.appendices
