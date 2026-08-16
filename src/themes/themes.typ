@@ -73,7 +73,7 @@
 #let densities = (
   compact: (
     leading: 0.62em,
-    paragraph-gap: 0.22em,
+    paragraph-gap: 0.38em,
     block-gap: 0.75em,
     heading-1-above: 1.55em,
     heading-1-below: 0.8em,
@@ -88,10 +88,11 @@
     bibliography-gap: 0.35em,
     list-gap: 0.32em,
     list-block-gap: 0.4em,
+    outline-entry-gap: 0.24em,
   ),
   normal: (
     leading: 0.72em,
-    paragraph-gap: 0.35em,
+    paragraph-gap: 0.62em,
     block-gap: 0.9em,
     heading-1-above: 1.8em,
     heading-1-below: 0.95em,
@@ -106,10 +107,11 @@
     bibliography-gap: 0.5em,
     list-gap: 0.4em,
     list-block-gap: 0.5em,
+    outline-entry-gap: 0.36em,
   ),
   relaxed: (
     leading: 0.82em,
-    paragraph-gap: 0.5em,
+    paragraph-gap: 0.82em,
     block-gap: 1.1em,
     heading-1-above: 2.2em,
     heading-1-below: 1.15em,
@@ -124,6 +126,7 @@
     bibliography-gap: 0.65em,
     list-gap: 0.48em,
     list-block-gap: 0.65em,
+    outline-entry-gap: 0.48em,
   ),
 )
 

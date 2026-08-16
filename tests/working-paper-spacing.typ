@@ -1,4 +1,6 @@
-#import "../lib.typ": working-paper, themes
+#import "../lib.typ": working-paper, themes, densities, theme-with
+
+#let normal-theme = theme-with(themes.academic, spacing: densities.normal)
 
 #show: working-paper.with(
   meta: (
@@ -7,9 +9,9 @@
     abstract: [本样例集中检查长段落、分级标题、块级公式、图表、列表与参考文献的纵向节奏。],
     keywords: ([正文排版], [视觉回归], [Typst]),
   ),
-  theme: themes.academic,
+  theme: normal-theme,
   options: (
-    front-matter: "title-page",
+    front-matter: "cover-toc",
     bibliography: (
       sources: (path("working-paper-spacing.bib"),),
       full: true,

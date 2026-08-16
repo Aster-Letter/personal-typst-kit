@@ -280,15 +280,18 @@
         #render-outline(theme, depth: opts.toc-depth)
         #pagebreak()
       ]
-      #if not inline [
+      #if inline [
+        #body
+        #render-bibliography(opts.bibliography)
+      ] else [
         #if opts.page-numbering-start == "body" [#counter(page).update(1)]
         #set page(
           header: if opts.header { page-header(theme, left: running-title) } else { none },
           footer: page-footer(theme),
         )
+        #body
+        #render-bibliography(opts.bibliography)
       ]
-      #body
-      #render-bibliography(opts.bibliography)
     ]
   ]
 }

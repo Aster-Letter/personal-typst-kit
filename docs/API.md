@@ -1,6 +1,6 @@
 # 公共 API
 
-所有稳定能力从 `lib.typ` 或 `@local/personal-typst-kit:0.2.1` 选择性导入。不要直接导入 `src/`。
+所有稳定能力从 `lib.typ` 或 `@local/personal-typst-kit:0.2.2` 选择性导入。不要直接导入 `src/`。
 
 ## Profiles
 
@@ -44,12 +44,12 @@ authors: (
 - `theme-with(base, colors:, fonts:, type-scale:, spacing:, styles:)`
 - `numbering-presets.cjk-paper`、`chapter`、`decimal`、`roman-outline`
 
-内置主题的 `spacing` 除正文、标题、公式、figure、题注、列表、脚注和参考文献 token 外，还覆盖目录、front matter、代码块与论文表格间距。`styles` 提供 `link-underline`、`bibliography-justify` 和 `bibliography-link-underline`。学术主题默认让参考文献左对齐、使用弱链接色且不加下划线；旧自定义主题缺少新增键时使用兼容回退值。
+内置主题的 `spacing` 除正文、标题、公式、figure、题注、列表、脚注和参考文献 token 外，还覆盖目录、front matter、代码块与论文表格间距。三档 `densities` 会同时调整正文行距、段距、主要块间距和目录条目间距；`styles` 提供 `link-underline`、`bibliography-justify` 和 `bibliography-link-underline`。学术主题默认让参考文献左对齐、使用弱链接色且不加下划线；旧自定义主题缺少新增键时使用兼容回退值。
 
 正文密度示例：
 
 ```typst
-#import "@local/personal-typst-kit:0.2.1": themes, densities, theme-with
+#import "@local/personal-typst-kit:0.2.2": themes, densities, theme-with
 #let normal-paper = theme-with(themes.academic, spacing: densities.normal)
 ```
 
