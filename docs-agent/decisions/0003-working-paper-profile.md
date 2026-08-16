@@ -11,7 +11,7 @@
 
 - 保留 `paper`，从公共门面新增独立 `working-paper`，不通过视觉 variant 混合两种结构职责。
 - `working-paper` 使用结构化作者数组和单一 `front-matter` 枚举，避免作者自由排版及 `cover`/`toc` 双重配置。
-- 正式视觉由可替换的 `themes.academic` 提供；正文与标题使用同一宋体家族并以字重区分，主题 schema 分离 `heading` 与 `link`，旧主题缺失时回退到 `accent`。
+- 正式视觉由可替换的 `themes.academic` 提供；正文与标题使用同一宋体家族并以字重区分，主题 schema 分离 `heading` 与 `link`，并以细分 spacing token 控制标题、公式、figure、题注、列表和参考文献节奏。旧主题缺失新增颜色或间距键时使用兼容回退值。
 - 定理、证明、正文注释、致谢和附录只服务工作论文，置于对应 extension，不提升为跨 profile 核心组件。
 - 只借鉴 ElegantPaper 的信息结构、版心和克制视觉，不复制其类文件源码。
 

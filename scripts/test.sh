@@ -12,7 +12,7 @@ for example in "${examples[@]}"; do
   typst compile --root "$ROOT" --features html "$ROOT/examples/$example" "$BUILD/$name.html"
 done
 
-valid=(working-paper-inline.typ working-paper-title-page.typ working-paper-authors.typ working-paper-custom-theme.typ)
+valid=(working-paper-inline.typ working-paper-title-page.typ working-paper-authors.typ working-paper-custom-theme.typ working-paper-spacing.typ working-paper-feedback.typ working-paper-front-pressure.typ)
 for fixture in "${valid[@]}"; do
   name="${fixture%.typ}"
   typst compile --root "$ROOT" "$ROOT/tests/$fixture" "$BUILD/$name.pdf"
@@ -32,7 +32,10 @@ for fixture in \
   working-paper-author-conflict.typ \
   working-paper-english.typ \
   working-paper-author-key.typ \
-  working-paper-old-toggle.typ; do
+  working-paper-old-toggle.typ \
+  working-paper-front-density.typ \
+  working-paper-extra-lines.typ \
+  code-block-breakable.typ; do
   if typst compile --root "$ROOT" "$ROOT/tests/invalid/$fixture" "$BUILD/invalid.pdf" >/dev/null 2>&1; then
     printf 'Expected compile failure: %s\n' "$fixture" >&2
     exit 1

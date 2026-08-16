@@ -28,7 +28,10 @@ $Valid = @(
   'working-paper-inline.typ',
   'working-paper-title-page.typ',
   'working-paper-authors.typ',
-  'working-paper-custom-theme.typ'
+  'working-paper-custom-theme.typ',
+  'working-paper-spacing.typ',
+  'working-paper-feedback.typ',
+  'working-paper-front-pressure.typ'
 )
 foreach ($Fixture in $Valid) {
   $Input = Join-Path $Root ('tests/' + $Fixture)
@@ -53,7 +56,10 @@ $Invalid = @(
   'working-paper-author-conflict.typ',
   'working-paper-english.typ',
   'working-paper-author-key.typ',
-  'working-paper-old-toggle.typ'
+  'working-paper-old-toggle.typ',
+  'working-paper-front-density.typ',
+  'working-paper-extra-lines.typ',
+  'code-block-breakable.typ'
 )
 foreach ($Fixture in $Invalid) {
   $ErrorActionPreference = 'Continue'

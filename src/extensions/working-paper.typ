@@ -1,5 +1,7 @@
 #import "../foundation/context.typ": active-theme
 
+#let align-content = align
+
 #let statement-kind = "personal-typst-kit-working-paper-statement"
 #let statement-counter = counter(figure.where(kind: statement-kind))
 #let statement-state = state("personal-typst-kit-working-paper-statement-state", (
@@ -57,7 +59,7 @@
 #let proof(body, title: [证明]) = context {
   let theme = active-theme.get()
   assert(theme != none, message: "proof must be used inside a personal-typst-kit profile")
-  block(width: 100%)[
+  block(width: 100%, above: theme.spacing.block-gap, below: theme.spacing.block-gap)[
     #set par(first-line-indent: 0em)
     #text(font: theme.fonts.heading, weight: "semibold")[#title：]
     #body
@@ -70,6 +72,8 @@
   assert(theme != none, message: "remark must be used inside a personal-typst-kit profile")
   block(
     width: 100%,
+    above: theme.spacing.block-gap,
+    below: theme.spacing.block-gap,
     inset: (left: 0.8em),
     stroke: (left: theme.spacing.line-width + theme.colors.line),
   )[
@@ -85,6 +89,56 @@
   body
 }
 
+#let paper-table(
+  body,
+  caption: none,
+  note: none,
+  align: auto,
+  inset: none,
+  header-fill: true,
+  outlined: true,
+) = context {
+  let theme = active-theme.get()
+  assert(theme != none, message: "paper-table must be used inside a personal-typst-kit profile")
+  assert(type(header-fill) == bool, message: "paper-table header-fill must be bool")
+  assert(type(outlined) == bool, message: "paper-table outlined must be bool")
+  let cell-inset = if inset == none {
+    (
+      x: theme.spacing.at("paper-table-inset-x", default: 0.7em),
+      y: theme.spacing.at("paper-table-inset-y", default: 0.55em),
+    )
+  } else {
+    inset
+  }
+  figure(
+    block(width: 100%)[
+      #set par(first-line-indent: 0em)
+      #set table(
+        align: align,
+        inset: cell-inset,
+        stroke: theme.spacing.line-width + theme.colors.line,
+      )
+      #show table.cell.where(y: 0): set text(font: theme.fonts.heading, weight: "semibold")
+      #if header-fill {
+        show table.cell.where(y: 0): set table.cell(fill: theme.colors.surface)
+      }
+      #body
+      #if note != none [
+        #block(
+          width: 100%,
+          above: theme.spacing.at("paper-table-note-gap", default: 0.55em),
+        )[
+          #set par(first-line-indent: 0em, justify: false)
+          #align-content(left)[#text(size: theme.type-scale.small, fill: theme.colors.muted)[#note]]
+        ]
+      ]
+    ],
+    kind: table,
+    caption: caption,
+    outlined: outlined,
+  )
+}
+
 #let appendix-numbering(..numbers) = {
   let values = numbers.pos()
   if values.len() == 1 {
@@ -94,8 +148,18 @@
   }
 }
 
-#let appendices(body) = {
+#let force-pagebreak = pagebreak
+
+#let appendices(
+  body,
+  pagebreak: true,
+  numbering: appendix-numbering,
+  outlined: true,
+) = context {
+  assert(type(pagebreak) == bool, message: "appendices pagebreak must be bool")
+  assert(type(outlined) == bool, message: "appendices outlined must be bool")
+  if pagebreak and target() == "paged" { force-pagebreak(weak: false) }
   counter(heading).update(0)
-  set heading(numbering: appendix-numbering)
+  set heading(numbering: numbering, outlined: outlined)
   body
 }

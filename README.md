@@ -19,7 +19,7 @@ bash scripts/install-local.sh
 安装后使用版本化本地包导入：
 
 ```typst
-#import "@local/personal-typst-kit:0.2.0": working-paper, themes, theorem
+#import "@local/personal-typst-kit:0.2.1": working-paper, themes, theorem
 
 #show: working-paper.with(
   meta: (
@@ -43,6 +43,8 @@ bash scripts/install-local.sh
 - 默认不包含字体文件；字体清单和 fallback 见 `docs/FONTS.md`。
 
 完整 API 见 `docs/API.md`，五类可编译入口见 `examples/`。`paper` 保留随和风格，`working-paper` 提供正式学术结构。真实消费者推动模板演进时，遵循 `docs/TEMPLATE_EVOLUTION.md`。
+
+`working-paper` 默认采用舒展正文；可通过 `densities.compact | normal | relaxed` 覆盖正文密度，并用 `options.front-matter-density` 单独控制封面容量。课程信息使用 `meta.course` 与通用 `meta.extra-lines`，不在公共包中固化学号或院系模型。
 
 ## 验证
 

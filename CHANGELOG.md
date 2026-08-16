@@ -2,6 +2,17 @@
 
 本项目遵循语义化版本。未发布变更记录在 `Unreleased`。
 
+## Unreleased
+
+## 0.2.1 - 2026-08-16
+
+- 放宽 `themes.academic` 的正文、标题、公式、图表、列表、脚注和参考文献节奏，三级标题提升至 12pt。
+- 新增 `densities.compact | normal | relaxed` 与独立 `front-matter-density`，并将目录、摘要、代码块和表格间距纳入主题 token。
+- 修复参考文献的强制两端对齐、醒目链接色与下划线，保留主题覆盖开关。
+- 渲染 `meta.course` 和通用 `meta.extra-lines`，并同步作者、摘要和关键词到文档元数据。
+- 新增 `paper-table`、`code-block.breakable` 以及可配置起页、编号和目录策略的 `appendices`。
+- 新增长封面、正文密度、bibliography、表格、代码和旧主题兼容回归。
+
 ## 0.2.0 - 2026-08-15
 
 - 新增正式 `working-paper` profile、`themes.academic` 与三种前置布局。

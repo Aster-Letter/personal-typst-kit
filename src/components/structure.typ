@@ -1,11 +1,16 @@
 #import "../foundation/context.typ": active-theme, special-heading-supplement
 
-#let code-block(body, title: none, language: none) = context {
+#let code-block(body, title: none, language: none, breakable: auto) = context {
   let theme = active-theme.get()
   assert(theme != none, message: "code-block must be used inside a personal-typst-kit profile")
+  assert(breakable == auto or type(breakable) == bool, message: "code-block breakable must be auto or bool")
+  let can-break = if breakable == auto { true } else { breakable }
   block(
     width: 100%,
-    inset: 0.9em,
+    breakable: can-break,
+    above: theme.spacing.at("code-block-gap", default: theme.spacing.block-gap),
+    below: theme.spacing.at("code-block-gap", default: theme.spacing.block-gap),
+    inset: theme.spacing.at("code-block-inset", default: 0.9em),
     fill: theme.colors.surface,
     stroke: theme.spacing.line-width + theme.colors.line,
     radius: theme.spacing.radius,
@@ -17,7 +22,7 @@
         #if title != none and language != none { [ · ] }
         #if language != none { language }
       ]
-      #v(0.35em)
+      #v(theme.spacing.at("code-block-header-gap", default: 0.35em))
     ]
     #body
   ]

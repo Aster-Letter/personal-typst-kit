@@ -54,7 +54,7 @@
 
 #acknowledgements[感谢所有公开字体、排版工具与中性测试素材的维护者。]
 
-#appendices[
+#appendices(pagebreak: true)[
   = 补充验证
 
   附录继续使用同一正文样式，并以字母编号进入目录。

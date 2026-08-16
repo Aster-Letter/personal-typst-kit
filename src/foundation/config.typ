@@ -41,6 +41,7 @@
   abstract: none,
   keywords: none,
   course: none,
+  extra-lines: none,
   audience: none,
   short-title: none,
   english: none,

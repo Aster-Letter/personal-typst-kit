@@ -22,6 +22,7 @@
 #let handout = handout-module.handout
 
 #let themes = theme-module.themes
+#let densities = theme-module.densities
 #let theme-with = theme-module.theme-with
 #let numbering-presets = numbering-module.numbering-presets
 
@@ -53,4 +54,5 @@
 #let proof = working-paper-extension.proof
 #let remark = working-paper-extension.remark
 #let acknowledgements = working-paper-extension.acknowledgements
+#let paper-table = working-paper-extension.paper-table
 #let appendices = working-paper-extension.appendices

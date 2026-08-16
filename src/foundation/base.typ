@@ -2,11 +2,13 @@
 #import "config.typ": normalize-bibliography
 
 #let color-token(theme, key, fallback) = theme.colors.at(key, default: fallback)
+#let spacing-token(theme, key, fallback) = theme.spacing.at(key, default: fallback)
+#let style-token(theme, key, fallback) = theme.at("styles", default: (:)).at(key, default: fallback)
 
 #let render-heading(it, theme, mode: "paper", chapter-label: none) = {
   let special = it.supplement == special-heading-supplement
   if special {
-    block(above: 1.05em, below: 0.7em)[
+    block(above: 1.05em, below: 0.7em, sticky: true)[
       #set par(first-line-indent: 0em)
       #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #text(size: theme.type-scale.h2, weight: "semibold")[#it.body]
@@ -15,7 +17,7 @@
     ]
   } else if mode == "book" and it.level == 1 {
     if target() == "paged" { pagebreak(weak: true) }
-    block(above: 0em, below: 1.2em)[
+    block(above: 0em, below: 1.2em, sticky: true)[
       #set par(first-line-indent: 0em)
       #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #if chapter-label != none and it.numbering != none [
@@ -34,9 +36,21 @@
     } else {
       theme.type-scale.h3
     }
-    let above = if it.level == 1 { 1.5em } else { 1em }
-    let below = if it.level == 1 { 0.9em } else { 0.5em }
-    block(above: above, below: below)[
+    let above = if it.level == 1 {
+      spacing-token(theme, "heading-1-above", 1.5em)
+    } else if it.level == 2 {
+      spacing-token(theme, "heading-2-above", 1em)
+    } else {
+      spacing-token(theme, "heading-3-above", 1em)
+    }
+    let below = if it.level == 1 {
+      spacing-token(theme, "heading-1-below", 0.9em)
+    } else if it.level == 2 {
+      spacing-token(theme, "heading-2-below", 0.5em)
+    } else {
+      spacing-token(theme, "heading-3-below", 0.5em)
+    }
+    block(above: above, below: below, sticky: true)[
       #set par(first-line-indent: 0em)
       #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
       #text(size: size, weight: if it.level == 1 { "bold" } else { "semibold" })[#it]
@@ -72,9 +86,53 @@
   set heading(numbering: numbering)
   set quote(block: true)
   show link: set text(fill: color-token(theme, "link", theme.colors.accent))
-  show link: underline
+  if style-token(theme, "link-underline", true) { show link: underline }
   show raw: set text(font: theme.fonts.mono, size: theme.type-scale.code)
-  show figure: set block(above: theme.spacing.block-gap, below: theme.spacing.block-gap)
+  set figure(gap: spacing-token(theme, "caption-gap", 0.65em))
+  set list(spacing: spacing-token(theme, "list-gap", 0.35em))
+  set enum(spacing: spacing-token(theme, "list-gap", 0.35em))
+  set terms(spacing: spacing-token(theme, "list-gap", 0.35em))
+  set footnote.entry(clearance: spacing-token(theme, "footnote-clearance", 1em))
+  show list: set block(
+    above: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+    below: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+  )
+  show enum: set block(
+    above: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+    below: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+  )
+  show terms: set block(
+    above: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+    below: spacing-token(theme, "list-block-gap", theme.spacing.paragraph-gap),
+  )
+  show footnote.entry: set par(
+    first-line-indent: 0em,
+    leading: spacing-token(theme, "footnote-leading", 0.62em),
+  )
+  show footnote.entry: set block(
+    above: spacing-token(theme, "footnote-entry-gap", 0.3em),
+  )
+  show math.equation: set block(
+    above: spacing-token(theme, "display-math-gap", 0.65em),
+    below: spacing-token(theme, "display-math-gap", 0.65em),
+  )
+  show figure: set block(
+    above: spacing-token(theme, "figure-gap", theme.spacing.block-gap),
+    below: spacing-token(theme, "figure-gap", theme.spacing.block-gap),
+  )
+  show bibliography: it => {
+    set par(
+      first-line-indent: 0em,
+      leading: spacing-token(theme, "bibliography-leading", theme.spacing.leading),
+      spacing: spacing-token(theme, "bibliography-gap", theme.spacing.paragraph-gap),
+      justify: style-token(theme, "bibliography-justify", false),
+    )
+    show link: set text(fill: color-token(theme, "bibliography-link", theme.colors.muted))
+    if not style-token(theme, "bibliography-link-underline", false) {
+      show underline: item => item.body
+    }
+    it
+  }
   show heading: it => {
     if heading-hook != none { heading-hook(it) }
     render-heading(it, theme, mode: heading-mode, chapter-label: chapter-label)
@@ -87,11 +145,15 @@
 }
 
 #let render-outline(theme, title: [目录], depth: 3) = {
-  block(above: 1em, below: 0.75em)[
+  block(
+    above: spacing-token(theme, "outline-title-above", 1em),
+    below: spacing-token(theme, "outline-title-below", 0.75em),
+  )[
     #set par(first-line-indent: 0em)
     #set text(font: theme.fonts.heading, fill: color-token(theme, "heading", theme.colors.accent))
     #text(size: 18pt, weight: "bold")[#title]
   ]
+  show outline.entry: set block(above: spacing-token(theme, "outline-entry-gap", 0.18em))
   outline(title: none, depth: depth)
 }
 
