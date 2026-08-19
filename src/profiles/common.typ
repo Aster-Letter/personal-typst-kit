@@ -62,7 +62,7 @@
   ]
 ]
 
-#let handout-title(meta, theme) = block(
+#let handout-panel-title(meta, theme) = block(
   width: 100%,
   inset: (left: 1.1em, right: 1.1em, top: 1.1em, bottom: 1em),
   fill: theme.colors.accent-soft,
@@ -78,6 +78,33 @@
   #set text(size: 9.5pt)
   #inline-meta(meta, ("course", "audience", "author", "date"))
 ]
+
+#let handout-compact-title(meta, theme) = block(
+  above: 0.4em,
+  below: 0.9em,
+)[
+  #set par(first-line-indent: 0em)
+  #text(
+    font: theme.fonts.heading,
+    size: 19pt,
+    weight: "bold",
+    fill: theme.colors.accent,
+  )[#meta.title]
+  #if meta.subtitle != none [
+    #v(0.35em)
+    #text(size: 10pt, fill: theme.colors.muted)[#meta.subtitle]
+  ]
+  #v(0.65em)
+  #line(length: 100%, stroke: theme.spacing.line-width + theme.colors.line)
+]
+
+#let handout-title(meta, theme, style: "panel") = {
+  if style == "compact" {
+    handout-compact-title(meta, theme)
+  } else {
+    handout-panel-title(meta, theme)
+  }
+}
 
 #let abstract-block(meta, theme) = if meta.abstract != none {
   block(

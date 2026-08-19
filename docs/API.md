@@ -1,6 +1,6 @@
 # 公共 API
 
-所有稳定能力从 `lib.typ` 或 `@local/personal-typst-kit:0.2.2` 选择性导入。不要直接导入 `src/`。
+所有稳定能力从 `lib.typ` 或 `@local/personal-typst-kit:0.2.3` 选择性导入。不要直接导入 `src/`。
 
 ## Profiles
 
@@ -11,6 +11,8 @@
 - `handout(meta:, theme:, options:)[body]`
 
 `meta.title` 必填。公共 `meta` 可包含 `subtitle`、`author`、`date`、`organization`、`version`、`status`、`abstract`、`keywords`、`course`、`extra-lines`、`audience` 和 `short-title`。
+
+`handout` 的 `options.title-style` 接受 `"panel" | "compact"`。默认 `"panel"` 使用带强调色底的标题卡片；`"compact"` 使用左对齐标题、可选副标题和分隔线，适合需要在标题后自行补充课程信息的讲义。
 
 ### Working Paper
 
@@ -49,7 +51,7 @@ authors: (
 正文密度示例：
 
 ```typst
-#import "@local/personal-typst-kit:0.2.2": themes, densities, theme-with
+#import "@local/personal-typst-kit:0.2.3": themes, densities, theme-with
 #let normal-paper = theme-with(themes.academic, spacing: densities.normal)
 ```
 

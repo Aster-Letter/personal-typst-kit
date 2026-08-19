@@ -49,6 +49,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Local package import failed' }
 
 $Invalid = @(
   'unknown-option.typ',
+  'handout-title-style.typ',
   'bare-image-path.typ',
   'working-paper-front-matter.typ',
   'working-paper-authors-type.typ',

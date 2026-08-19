@@ -10,7 +10,7 @@
     date: [2026-07],
   ),
   theme: themes.warm,
-  options: (draft-mode: "hide"),
+  options: (draft-mode: "hide", title-style: "compact"),
 )
 
 #learning-objectives(
